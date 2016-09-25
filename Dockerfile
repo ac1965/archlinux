@@ -16,7 +16,6 @@ RUN pacman --noconfirm --needed -Syu \
     jre7-openjdk jdk7-openjdk \
     man \
     man-pages \
-    mercurial \
     ltrace \
     strace \
     tcpdump \
