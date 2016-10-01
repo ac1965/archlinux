@@ -6,31 +6,32 @@ COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY pacman.conf /etc/pacman.conf
 RUN pacman --noconfirm --needed -Syu \
     abs \
-    adobe-source-code-pro-fonts \
-    adobe-source-sans-pro-fonts \
     base-devel \
     dnsutils \
-    emacs \
     gdb \
-    go \
-    jre7-openjdk jdk7-openjdk \
     man \
     man-pages \
     ltrace \
     strace \
     tcpdump \
     tor \
-    ttf-inconsolata \
-    ttf-sazanami \
     python \
     python2 \
     unzip \
     vim \
-    xorg \
     yaourt \
-    w3m \
     whois \
         > /dev/null
+#    adobe-source-code-pro-fonts \
+#    adobe-source-sans-pro-fonts \
+#    emacs \
+#    go \
+#    jre7-openjdk jdk7-openjdk \
+#    ttf-inconsolata \
+#    ttf-sazanami \
+#    xorg \
+#    w3m \
+
 RUN echo -e '\ny\ny\n' | pacman -S multilib-devel && echo -e '\r'
 
 # abs
