@@ -7,6 +7,7 @@ COPY pacman.conf /etc/pacman.conf
 RUN pacman --noconfirm --needed -Syu \
     abs \
     base-devel \
+    bzr \
     dnsutils \
     gdb \
     man \
@@ -17,6 +18,9 @@ RUN pacman --noconfirm --needed -Syu \
     tor \
     python \
     python2 \
+    ruby \
+    mercurial \
+    subversion \
     unzip \
     vim \
     yaourt \
