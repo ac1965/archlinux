@@ -5,11 +5,9 @@ MAINTAINER ac1965 <https://github.com/ac1965>
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY pacman.conf /etc/pacman.conf
 COPY ["packages/", "/tmp/packages/"]
-RUN pacman --noconfirm --needed -Syu $(cat /tmp/packages/base.txt)
+RUN pacman --noconfirm --needed -Syu base-devel
 RUN echo -e '\ny\ny\n' | pacman -S multilib-devel && echo -e '\r'
-
-# abs
-RUN timeout 5 abs > /dev/null 2>&1 || abs > /dev/null 2>&1
+RUN pacman --noconfirm --needed -Syu $(egrep -v '^#|^$' /tmp/packages/base.txt)
 
 # user
 RUN groupadd -r pwner && \
