@@ -1,13 +1,3 @@
-#adobe-source-code-pro-fonts
-#adobe-source-sans-pro-fonts
-#gnome-keyring
-#lxterminal
-#mate
-#slim
-#ttf-inconsolata
-#xorg
-#abs
-
 bzr
 dnsutils
 emacs
