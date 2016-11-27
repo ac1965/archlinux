@@ -22,3 +22,10 @@ vim
 w3m
 whois
 yaourt
+
+xorg
+slim
+dmenu
+feh
+tint2
+openbox

@@ -5,7 +5,7 @@ MAINTAINER ac1965 <https://github.com/ac1965>
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY pacman.conf /etc/pacman.conf
 COPY ["packages/", "/tmp/packages/"]
-RUN pacman --noconfirm --needed -Syu base-devel
+RUN pacman --noconfirm --needed -Syu base-devel linux-grsec linux-grsec-headers sudo
 RUN echo -e '\ny\ny\n' | pacman -S multilib-devel && echo -e '\r'
 RUN pacman --noconfirm --needed -Syu $(egrep -v '^#|^$' /tmp/packages/base.txt)
 
@@ -21,3 +21,4 @@ ENV USER pwner
 WORKDIR /home/pwner/
 
 CMD ["bash"]
+RUN echo 'exec openbox' > ~/.xinitrc
