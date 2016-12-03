@@ -1,10 +1,10 @@
 bzr
 dnsutils
-emacs
+#emacs
 gdb
-go
-jdk7-openjdk
-jre7-openjdk
+#go
+#jdk7-openjdk
+#jre7-openjdk
 ltrace
 man
 man-pages
@@ -23,9 +23,9 @@ w3m
 whois
 yaourt
 
-xorg
-slim
-dmenu
-feh
-tint2
-openbox
+#xorg
+#slim
+#dmenu
+#feh
+#tint2
+#openbox
