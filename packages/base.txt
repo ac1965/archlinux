@@ -1,6 +1,7 @@
 bzr
 dnsutils
 gdb
+git
 ltrace
 man
 man-pages
@@ -11,6 +12,7 @@ python2
 ruby
 strace
 subversion
+sudo
 tcpdump
 tor
 unzip
