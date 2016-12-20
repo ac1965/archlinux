@@ -16,8 +16,6 @@ RUN groupadd -r pwner && \
 RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 USER pwner
-ENV HOME /home/pwner
-ENV USER pwner
 WORKDIR /home/pwner/
 
 CMD ["bash"]
