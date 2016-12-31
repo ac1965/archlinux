@@ -6,10 +6,12 @@ ltrace
 man
 man-pages
 mercurial
+net-tools
+openvpn
 proxychains-ng
 python
-python2
 python-pip
+python2
 python2-pip
 ruby
 strace
@@ -22,4 +24,3 @@ vim
 w3m
 whois
 yaourt
-net-tools
