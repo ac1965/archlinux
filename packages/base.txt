@@ -2,6 +2,9 @@ bzr
 dnsutils
 gdb
 git
+inetutils
+libffi
+libnetfilter_queue
 ltrace
 man
 man-pages
@@ -13,7 +16,7 @@ python
 python-pip
 python2
 python2-pip
-ruby
+#ruby
 strace
 subversion
 sudo
