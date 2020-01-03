@@ -1,21 +1,37 @@
-FROM ac1965/arch-mini:latest
+FROM archlinux/base
 MAINTAINER ac1965 <https://github.com/ac1965>
 
 # pacman
-COPY mirrorlist /etc/pacman.d/mirrorlist
-COPY pacman.conf /etc/pacman.conf
 COPY ["packages/", "/tmp/packages/"]
-RUN pacman -Syyu --force --noconfirm --needed base-devel
+
+RUN echo '[multilib]' >> /etc/pacman.conf && \
+    echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
+    pacman --noconfirm --needed -Syyu && \
+    pacman --noconfirm --needed -S base-devel git
 RUN test $(uname -m) == "x86_64" && (echo -e '\ny\ny\n' | pacman -S multilib-devel && echo -e '\r')
-RUN pacman -Syyu --force --noconfirm --needed $(egrep -v '^#|^$' /tmp/packages/base.txt)
 
 # user
 RUN groupadd -r pwner && \
-  useradd -m -r -g pwner -G wheel -d /home/pwner -s /bin/bash -c "Nonroot User" pwner
-
-RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+  useradd -m -r -g pwner -G wheel -d /home/pwner -s /bin/bash -c "Nonroot User" pwner && \
+  passwd -d pwner && \
+  echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+  mkdir -p /home/pwner/.gnupg && \
+  echo 'standard-resolver' > /home/pwner/.gnupg/dirmngr.conf && \
+  mkdir /build && \
+  chown -R pwner:pwner /build && cd /build && \
+  sudo -u pwner git clone --depth 1 https://aur.archlinux.org/yay.git && \
+  cd yay && \
+  sudo -u pwner makepkg --noconfirm -si && \
+  sudo -u pwner yay --afterclean --removemake --save && \
+  pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
+  rm -fr /home/pwner/.cache /build
 
 USER pwner
 WORKDIR /home/pwner/
+RUN yay --noconfirm --needed -S $(egrep -v '^#|^$' /tmp/packages/base.txt)
+RUN git clone --depth=1 https://github.com/radareorg/radare2 && \
+  cd radare2 && ./sys/install.sh && \
+  r2pm init && \
+  for repo in r2dec r2ghidra-dec; do r2pm -i ${repo}; done
 
 CMD ["bash"]
