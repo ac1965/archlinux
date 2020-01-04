@@ -4,7 +4,7 @@ MAINTAINER ac1965 <https://github.com/ac1965>
 # pacman
 COPY ["packages/", "/tmp/packages/"]
 
-RUN echo ' Set disable_coredump false' >> /etc/sudo.conf
+RUN echo 'Set disable_coredump false' >> /etc/sudo.conf
 RUN echo '[multilib]' >> /etc/pacman.conf && \
     echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
     pacman --noconfirm --needed -Syyu && \
