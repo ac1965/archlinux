@@ -116,6 +116,9 @@ qt5-svg
 meson
 graphviz
 libzip
+clang
+xxhash
+re2c
 
 #--
 
@@ -177,7 +180,6 @@ tig
 tmux
 tree
 trickle-git
-usbutils
 vi
 wayland
 xclip
