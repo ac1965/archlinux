@@ -119,6 +119,7 @@ libzip
 clang
 xxhash
 re2c
+python-pip
 
 #--
 
