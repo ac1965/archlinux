@@ -8,7 +8,7 @@ RUN echo 'Set disable_coredump false' >> /etc/sudo.conf
 RUN echo '[multilib]' >> /etc/pacman.conf && \
     echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
     pacman --noconfirm --needed -Syyu && \
-    pacman --noconfirm --needed -S base-devel gdb cmake git go
+    pacman --noconfirm --needed -S base-devel git go
 RUN test $(uname -m) == "x86_64" && (echo -e '\ny\ny\n' | pacman -S multilib-devel && echo -e '\r')
 
 # user
@@ -29,11 +29,12 @@ RUN groupadd -r pwner && \
 
 USER pwner
 WORKDIR /home/pwner/
-RUN yay --noconfirm --needed -S vim python-pip && yay --noconfirm -Scc
+RUN yay --noconfirm --needed -S $(egrep -v '^#|^$' /tmp/packages/base.txt) && yay --noconfirm -Scc
 RUN git clone --depth=1 https://github.com/radareorg/radare2 && \
   cd radare2 && ./sys/install.sh && \
   r2pm init && \
   for repo in r2dec r2ghidra-dec; do r2pm -i ${repo}; done
 RUN sudo pip install git+https://github.com/arthaud/python3-pwntools.git
+RUN git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit
 
 CMD ["bash"]
