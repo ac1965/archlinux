@@ -34,7 +34,7 @@ RUN git clone --depth=1 https://github.com/radareorg/radare2 && \
   cd radare2 && ./sys/install.sh && \
   r2pm init && \
   for repo in r2dec r2ghidra-dec; do r2pm -i ${repo}; done
-RUN sudo pip install git+https://github.com/arthaud/python3-pwntools.git
+RUN sudo pip install git+https://github.com/Gallopsled/pwntools.git
 RUN git clone https://github.com/longld/peda.git ~/peda && echo "source ~/peda/peda.py" >> ~/.gdbinit
 
 CMD ["bash"]
