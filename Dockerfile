@@ -30,6 +30,7 @@ RUN groupadd -r pwner && \
 USER pwner
 WORKDIR /home/pwner/
 RUN yay --noconfirm --needed -S $(egrep -v '^#|^$' /tmp/packages/base.txt) && yay --noconfirm -Scc
+RUN git config --global pull.rebase false
 RUN git clone --depth=1 https://github.com/radareorg/radare2 && \
   cd radare2 && ./sys/install.sh && \
   r2pm init && \
