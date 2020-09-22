@@ -1,0 +1,32 @@
+# docker-compose.yml
+version: "3"
+services:
+  metasploitable:
+    image: tleemcjr/metasploitable2
+    tty: true
+    ports:
+      - "8180:8180"
+  dvwa:
+    image: vulnerables/web-dvwa
+    tty: true
+    ports:
+      - "8889:80"
+  bwapp:
+    image: raesene/bwapp
+    tty: true
+    ports:
+      - "8890:80"
+  archlinux:
+    build: .
+    tty: true
+    ports:
+      - 5555:5555
+      - 4444:4444
+    volumes:
+      - ./work:/root
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./work:/usr/share/nginx/html

@@ -32,6 +32,7 @@ hping
 conntrack-tools
 iptstate
 nftables
+smbclient
 
 tcpdump
 scapy
@@ -43,6 +44,10 @@ binwalk
 cmake
 python-pip
 
+mariadb
+
+hydra
+metasploit
 pwndbg-git
 snappy
 sshpass
